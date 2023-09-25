@@ -1,11 +1,11 @@
 import { createApp } from 'vue'
 import { createPinia } from 'pinia'
-
+import registerIcons from './global/register-icons.js'
 import App from './App.vue'
 import router from './router'
 import '@/assets/css/index.less'
 const app = createApp(App)
-
+app.use(registerIcons)
 app.use(createPinia())
 app.use(router)
 
