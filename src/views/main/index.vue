@@ -1,20 +1,45 @@
 <template>
-  <div>main</div>
-  <el-button type="primary">xx</el-button>
-  <el-button type="success" plain>Success</el-button>
-  <div style="font-size: 20px">
-    <!-- 由于SVG图标默认不携带任何属性 -->
-    <!-- 你需要直接提供它们 -->
-    <Edit style="width: 1em; height: 1em; margin-right: 8px" />
-    <Share style="width: 1em; height: 1em; margin-right: 8px" />
-    <Delete style="width: 1em; height: 1em; margin-right: 8px" />
-    <Search style="width: 1em; height: 1em; margin-right: 8px" />
+  <div class="layout">
+    <el-container class="container-wrap">
+      <el-aside :width="isFold ? '60px' : '200px'">
+        <PageAside :sideIsFold="isFold"></PageAside>
+      </el-aside>
+      <el-container>
+        <el-header height="85px">
+          <PageHeader @isFoldChange="handleAsideWidthChange"></PageHeader>
+        </el-header>
+        <el-main>
+          <RouterView></RouterView>
+        </el-main>
+        <el-footer>Footer</el-footer>
+      </el-container>
+    </el-container>
   </div>
-  <el-icon color="#409EFC" class="no-inherit">
-    <Share />
-  </el-icon>
 </template>
 
-<script setup></script>
+<script setup>
+import { ref } from 'vue'
+import PageHeader from '@/components/page-header/index.vue'
+import PageAside from '@/components/page-aside/index.vue'
+const isFold = ref(false)
+function handleAsideWidthChange(value) {
+  isFold.value = value
+}
+</script>
 
-<style lang="scss" scoped></style>
+<style lang="less" scoped>
+.layout {
+  width: 100vw;
+  height: 100vh;
+  background-color: #eee;
+  .container-wrap {
+    height: 100%;
+    .el-aside {
+      transition: width 0.3s;
+    }
+    .el-header {
+      padding: 0;
+    }
+  }
+}
+</style>
