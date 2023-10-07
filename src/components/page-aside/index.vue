@@ -34,6 +34,7 @@
 <script lang="ts" setup>
 import { ref } from 'vue'
 import { useRoute } from 'vue-router'
+import router from '../../router/index'
 defineProps({
   sideIsFold: {
     type: Boolean,
@@ -49,7 +50,31 @@ const userMenu = [
       {
         id: '1-1',
         name: '欢迎页',
-        url: 'welcome'
+        url: '/main/welcome'
+      }
+    ]
+  },
+  {
+    id: '2',
+    icon: 'ElementPlus',
+    name: '测试页01',
+    children: [
+      {
+        id: '2-1',
+        name: '测试页01',
+        url: '/main/test01'
+      }
+    ]
+  },
+  {
+    id: '3',
+    icon: 'ElementPlus',
+    name: '测试页02',
+    children: [
+      {
+        id: '3-1',
+        name: '测试页02',
+        url: '/main/test02'
       }
     ]
   }
@@ -57,6 +82,7 @@ const userMenu = [
 //
 function handlerMenuJump(subItem) {
   console.log(subItem)
+  router.push(subItem.url)
 }
 // 刷新-菜单默认值
 const route = useRoute()
