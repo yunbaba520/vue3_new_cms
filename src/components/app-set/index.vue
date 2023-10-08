@@ -9,15 +9,15 @@
     </el-divider>
     <div class="layout-btns">
       <div
-        :class="['btn', 'btn-classic', layoutActive === 'classic' ? 'active' : '']"
+        :class="['btn', 'btn-classic', appConfigStore.layout === 'classic' ? 'active' : '']"
         @click="setLayout('classic')"
       ></div>
       <div
-        :class="['btn', 'btn-topLeft', layoutActive === 'topLeft' ? 'active' : '']"
+        :class="['btn', 'btn-topLeft', appConfigStore.layout === 'topLeft' ? 'active' : '']"
         @click="setLayout('topLeft')"
       ></div>
       <div
-        :class="['btn', 'btn-top', layoutActive === 'top' ? 'active' : '']"
+        :class="['btn', 'btn-top', appConfigStore.layout === 'top' ? 'active' : '']"
         @click="setLayout('top')"
       ></div>
     </div>
@@ -26,14 +26,16 @@
 
 <script setup>
 import { ref } from 'vue'
+import useAppConfig from '../../stores/appConfig/index'
+const appConfigStore = useAppConfig()
+// 抽屉
 const drawer = ref(false)
 function openSetDrawer() {
   drawer.value = true
 }
 // 布局
-const layoutActive = ref('classic')
 function setLayout(selectLayout) {
-  layoutActive.value = selectLayout
+  appConfigStore.setLayout(selectLayout)
 }
 defineExpose({
   openSetDrawer
