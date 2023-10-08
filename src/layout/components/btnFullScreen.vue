@@ -1,10 +1,17 @@
 <template>
-  <div class="btn-wrap">
+  <div class="btn-wrap" @click="toggleFullscreen">
     <el-icon size="20"><FullScreen /></el-icon>
   </div>
 </template>
 
-<script setup></script>
+<script setup>
+import { useFullscreen } from '@vueuse/core'
+
+const { toggle } = useFullscreen()
+function toggleFullscreen() {
+  toggle()
+}
+</script>
 
 <style lang="less" scoped>
 .btn-wrap {
