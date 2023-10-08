@@ -1,11 +1,7 @@
 <template>
   <div class="nav-aside">
-    <div class="aside-top">
-      <img src="@/assets/image/logo.svg" alt="" />
-      <span v-show="!sideIsFold">ZY后台管理项目</span>
-    </div>
     <el-menu
-      :collapse="sideIsFold"
+      :collapse="appConfigStore.sideIsFold"
       :default-active="defaultActive"
       unique-opened
       text-color="#b7bdc3"
@@ -31,16 +27,12 @@
   </div>
 </template>
 
-<script lang="ts" setup>
+<script setup>
 import { ref } from 'vue'
 import { useRoute } from 'vue-router'
-import router from '../../router/index'
-defineProps({
-  sideIsFold: {
-    type: Boolean,
-    default: false
-  }
-})
+import router from '@/router/index'
+import useAppConfig from '../../stores/appConfig/index'
+const appConfigStore = useAppConfig()
 const userMenu = [
   {
     id: '1',
@@ -79,7 +71,6 @@ const userMenu = [
     ]
   }
 ]
-//
 function handlerMenuJump(subItem) {
   console.log(subItem)
   router.push(subItem.url)
@@ -99,42 +90,21 @@ const defaultActive = ref(currentMenu.id + '')
 </script>
 
 <style lang="less" scoped>
-.nav-aside {
-  height: 100%;
-  background-color: #001529;
-  .aside-top {
-    height: 28px;
-    display: flex;
-    align-items: center;
-    padding: 8px;
-
-    img {
-      height: 100%;
-      margin: 0 10px;
+.el-menu {
+  border-right: none;
+  user-select: none;
+  .el-sub-menu {
+    .el-menu-item {
+      padding-left: 50px !important;
+      background-color: #0c2135;
     }
-    span {
-      font-size: 16px;
-      font-weight: 700;
-      color: white;
-      white-space: nowrap;
+
+    .el-menu-item:hover {
+      color: #fff;
     }
-  }
-  .el-menu {
-    border-right: none;
-    user-select: none;
-    .el-sub-menu {
-      .el-menu-item {
-        padding-left: 50px !important;
-        background-color: #0c2135;
-      }
 
-      .el-menu-item:hover {
-        color: #fff;
-      }
-
-      .el-menu-item.is-active {
-        background-color: #0a60bd;
-      }
+    .el-menu-item.is-active {
+      background-color: #0a60bd;
     }
   }
 }
