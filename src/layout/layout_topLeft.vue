@@ -27,7 +27,7 @@
         </el-aside>
         <el-container>
           <el-main>
-            <RouterView></RouterView>
+            <RouterViewWrap></RouterViewWrap>
           </el-main>
           <el-footer>Footer</el-footer>
         </el-container>
@@ -43,7 +43,7 @@ import BtnFold from './components/btnFold.vue'
 import BtnUser from './components/btnUser.vue'
 import BtnSet from './components/btnSet.vue'
 import BtnFullScreen from './components/btnFullScreen.vue'
-
+import RouterViewWrap from './components/routerViewWrap.vue'
 import useAppConfig from '@/stores/appConfig/index'
 const appConfigStore = useAppConfig()
 </script>
