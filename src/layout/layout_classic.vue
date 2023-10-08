@@ -21,7 +21,7 @@
                 <BtnUser></BtnUser>
               </div>
             </div>
-            <div class="top-menu"></div>
+            <HeaderTags></HeaderTags>
           </div>
         </el-header>
         <el-main>
@@ -41,6 +41,7 @@ import BtnUser from './components/btnUser.vue'
 import BtnSet from './components/btnSet.vue'
 import BtnFullScreen from './components/btnFullScreen.vue'
 import RouterViewWrap from './components/routerViewWrap.vue'
+import HeaderTags from './components/headerTags.vue'
 import useAppConfig from '@/stores/appConfig/index'
 const appConfigStore = useAppConfig()
 </script>
@@ -80,15 +81,6 @@ const appConfigStore = useAppConfig()
           display: flex;
           align-items: center;
         }
-      }
-      .top-menu {
-        box-sizing: border-box;
-
-        height: 35px;
-        background-color: #fff;
-
-        border-top: 1px solid #ddd;
-        border-bottom: 1px solid #ddd;
       }
     }
   }

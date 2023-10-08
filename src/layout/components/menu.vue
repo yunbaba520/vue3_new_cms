@@ -33,14 +33,17 @@
 import { ref, computed } from 'vue'
 import { useRoute } from 'vue-router'
 import router from '@/router/index'
-import useAppConfig from '../../stores/appConfig/index'
+import useTagsView from '@/stores/tagsView/index'
+import useAppConfig from '@/stores/appConfig/index'
 const appConfigStore = useAppConfig()
+const tagsViewStore = useTagsView()
 const mode = computed(() => {
   return appConfigStore.layout === 'top' ? 'horizontal' : 'vertical'
 })
 const collapse = computed(() => {
   return appConfigStore.sideIsFold && appConfigStore.layout !== 'top'
 })
+// 注意格式，路由缓存有使用
 const userMenu = [
   {
     id: '1',
@@ -49,7 +52,8 @@ const userMenu = [
     children: [
       {
         id: '1-1',
-        name: '欢迎页',
+        name: '欢迎页面',
+        keepName: 'welcome',
         url: '/main/welcome'
       }
     ]
@@ -62,6 +66,7 @@ const userMenu = [
       {
         id: '2-1',
         name: '测试页01',
+        keepName: 'testPage01',
         url: '/main/test01'
       }
     ]
@@ -74,6 +79,7 @@ const userMenu = [
       {
         id: '3-1',
         name: '测试页02',
+        keepName: 'testPage02',
         url: '/main/test02'
       }
     ]
@@ -82,6 +88,8 @@ const userMenu = [
 function handlerMenuJump(subItem) {
   console.log(subItem)
   router.push(subItem.url)
+  // 把页面进行缓存
+  tagsViewStore.addKeepView(subItem)
 }
 // 刷新-菜单默认值
 const route = useRoute()
@@ -95,6 +103,7 @@ function mapDefaultMenu() {
 }
 const currentMenu = mapDefaultMenu()
 const defaultActive = ref(currentMenu.id + '')
+tagsViewStore.addKeepView(currentMenu)
 </script>
 
 <style lang="less" scoped>

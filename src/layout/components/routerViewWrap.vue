@@ -12,7 +12,7 @@
 import { computed } from 'vue'
 import useTagsView from '../../stores/tagsView/index'
 const tagsViewStore = useTagsView()
-const getCaches = computed(() => tagsViewStore.keepAliveViewsName)
+const getCaches = computed(() => tagsViewStore.getAllKeepViews)
 </script>
 
-<style lang="scss" scoped></style>
+<style lang="less" scoped></style>
