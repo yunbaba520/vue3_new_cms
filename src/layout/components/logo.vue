@@ -1,13 +1,18 @@
 <template>
   <div class="aside-top">
     <img src="@/assets/image/logo.svg" alt="" />
-    <span v-show="!appConfigStore.sideIsFold">ZY后台管理项目</span>
+    <span v-show="isShowText">ZY后台管理项目</span>
   </div>
 </template>
 
 <script setup>
+import { computed } from 'vue'
 import useAppConfig from '../../stores/appConfig/index'
 const appConfigStore = useAppConfig()
+
+const isShowText = computed(() => {
+  return !appConfigStore.sideIsFold || appConfigStore.layout !== 'classic'
+})
 </script>
 
 <style lang="less" scoped>

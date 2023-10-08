@@ -1,7 +1,7 @@
 <template>
   <div class="layout">
     <el-container class="container-wrap">
-      <el-aside :width="appConfigStore.sideIsFold ? '60px' : '200px'">
+      <el-aside :width="appConfigStore.sideIsFold ? '64px' : '200px'">
         <Logo></Logo>
         <Menu></Menu>
       </el-aside>

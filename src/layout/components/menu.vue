@@ -1,7 +1,9 @@
 <template>
   <div class="nav-aside">
     <el-menu
+      :mode="mode"
       :collapse="appConfigStore.sideIsFold"
+      :ellipsis="false"
       :default-active="defaultActive"
       unique-opened
       text-color="#b7bdc3"
@@ -28,11 +30,15 @@
 </template>
 
 <script setup>
-import { ref } from 'vue'
+import { ref, computed } from 'vue'
 import { useRoute } from 'vue-router'
 import router from '@/router/index'
 import useAppConfig from '../../stores/appConfig/index'
 const appConfigStore = useAppConfig()
+const mode = computed(() => {
+  return appConfigStore.layout === 'top' ? 'horizontal' : 'vertical'
+})
+
 const userMenu = [
   {
     id: '1',
@@ -107,5 +113,9 @@ const defaultActive = ref(currentMenu.id + '')
       background-color: #0a60bd;
     }
   }
+}
+.el-menu--horizontal {
+  box-sizing: border-box;
+  height: 50px;
 }
 </style>

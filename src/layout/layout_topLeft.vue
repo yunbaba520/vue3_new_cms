@@ -1,7 +1,99 @@
 <template>
-  <div>topleft</div>
+  <div class="layout">
+    <el-container class="container-wrap">
+      <el-header height="85px">
+        <div class="page-header">
+          <div class="top-info">
+            <div class="info-left">
+              <Logo></Logo>
+              <BtnFold></BtnFold>
+            </div>
+            <div class="info-right">
+              <!-- 全屏 -->
+              <BtnFullScreen></BtnFullScreen>
+              <!-- app设置 -->
+              <BtnSet></BtnSet>
+              <!-- user -->
+              <BtnUser></BtnUser>
+            </div>
+          </div>
+          <div class="top-menu"></div>
+        </div>
+      </el-header>
+
+      <el-container>
+        <el-aside :width="appConfigStore.sideIsFold ? '64px' : '200px'">
+          <Menu></Menu>
+        </el-aside>
+        <el-container>
+          <el-main>
+            <RouterView></RouterView>
+          </el-main>
+          <el-footer>Footer</el-footer>
+        </el-container>
+      </el-container>
+    </el-container>
+  </div>
 </template>
 
-<script setup></script>
+<script setup>
+import Logo from './components/logo.vue'
+import Menu from './components/menu.vue'
+import BtnFold from './components/btnFold.vue'
+import BtnUser from './components/btnUser.vue'
+import BtnSet from './components/btnSet.vue'
+import BtnFullScreen from './components/btnFullScreen.vue'
 
-<style lang="scss" scoped></style>
+import useAppConfig from '@/stores/appConfig/index'
+const appConfigStore = useAppConfig()
+</script>
+
+<style lang="less" scoped>
+.layout {
+  width: 100vw;
+  height: 100vh;
+  background-color: #eee;
+  .container-wrap {
+    height: 100%;
+    .el-aside {
+      background-color: #001529;
+      transition: width 0.3s;
+    }
+    .el-header {
+      padding: 0;
+    }
+    .page-header {
+      box-sizing: border-box;
+      height: 85px;
+      .top-info {
+        height: 50px;
+        padding: 0 10px;
+        background-color: #fff;
+        display: flex;
+        justify-content: space-between;
+        .info-left {
+          height: 100%;
+          display: flex;
+          align-items: center;
+          .el-icon {
+            cursor: pointer;
+          }
+        }
+        .info-right {
+          display: flex;
+          align-items: center;
+        }
+      }
+      .top-menu {
+        box-sizing: border-box;
+
+        height: 35px;
+        background-color: #fff;
+
+        border-top: 1px solid #ddd;
+        border-bottom: 1px solid #ddd;
+      }
+    }
+  }
+}
+</style>
