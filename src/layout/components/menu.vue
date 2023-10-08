@@ -2,7 +2,7 @@
   <div class="nav-aside">
     <el-menu
       :mode="mode"
-      :collapse="appConfigStore.sideIsFold"
+      :collapse="collapse"
       :ellipsis="false"
       :default-active="defaultActive"
       unique-opened
@@ -38,7 +38,9 @@ const appConfigStore = useAppConfig()
 const mode = computed(() => {
   return appConfigStore.layout === 'top' ? 'horizontal' : 'vertical'
 })
-
+const collapse = computed(() => {
+  return appConfigStore.sideIsFold && appConfigStore.layout !== 'top'
+})
 const userMenu = [
   {
     id: '1',
