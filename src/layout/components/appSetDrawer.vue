@@ -21,6 +21,13 @@
         @click="setLayout('top')"
       ></div>
     </div>
+    <el-divider>
+      <span>界面显示</span>
+    </el-divider>
+    <div class="row">
+      <span>灰色模式</span>
+      <el-switch v-model="greyMode" @change="greyModeChange" />
+    </div>
   </el-drawer>
 </template>
 
@@ -36,6 +43,11 @@ function openSetDrawer() {
 // 布局
 function setLayout(selectLayout) {
   appConfigStore.setLayout(selectLayout)
+}
+// 灰色模式
+const greyMode = ref(appConfigStore.greyMode)
+function greyModeChange(val) {
+  appConfigStore.setGreyMode(val)
 }
 defineExpose({
   openSetDrawer
@@ -112,5 +124,10 @@ defineExpose({
     border-radius: 4px 4px 0 0;
     content: '';
   }
+}
+.row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
 }
 </style>

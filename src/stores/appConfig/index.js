@@ -6,7 +6,9 @@ const useAppConfig = defineStore('appConfig', {
     // 侧边栏是否折叠
     sideIsFold: false,
     // 布局
-    layout: localCache.getCache(LAYOUT) || 'classic'
+    layout: localCache.getCache(LAYOUT) || 'classic',
+    // 灰色模式
+    greyMode: false
   }),
   actions: {
     setSideFold(bool) {
@@ -15,6 +17,9 @@ const useAppConfig = defineStore('appConfig', {
     setLayout(value) {
       this.layout = value
       localCache.setCache(LAYOUT, value)
+    },
+    setGreyMode(bool) {
+      this.greyMode = bool
     }
   }
 })
