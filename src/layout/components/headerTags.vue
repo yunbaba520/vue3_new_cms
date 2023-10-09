@@ -21,7 +21,32 @@
       <el-icon @click="handleRefresh"><RefreshRight /></el-icon>
     </div>
     <div class="right-arrow btn">
-      <el-icon><Setting /></el-icon>
+      <el-dropdown trigger="click" @command="handleCommand">
+        <el-icon><Setting /></el-icon>
+
+        <template #dropdown>
+          <el-dropdown-menu>
+            <el-dropdown-item command="refresh"
+              ><el-icon><RefreshRight /></el-icon>重新加载</el-dropdown-item
+            >
+            <el-dropdown-item command="closeCurrent" disabled
+              ><el-icon><Close /></el-icon>关闭当前标签页</el-dropdown-item
+            >
+            <el-dropdown-item divided disabled
+              ><el-icon><ArrowLeft /></el-icon>关闭左侧标签页</el-dropdown-item
+            >
+            <el-dropdown-item disabled
+              ><el-icon><ArrowRight /></el-icon>关闭右侧标签页</el-dropdown-item
+            >
+            <el-dropdown-item divided disabled
+              ><el-icon><Position /></el-icon>关闭其他标签页</el-dropdown-item
+            >
+            <el-dropdown-item disabled>
+              <el-icon><Minus /></el-icon>关闭全部标签页</el-dropdown-item
+            >
+          </el-dropdown-menu>
+        </template>
+      </el-dropdown>
     </div>
   </ul>
 </template>
@@ -39,6 +64,17 @@ function handleJumpPage(tag) {
   router.push(tag.url)
 }
 const route = useRoute()
+function handleCommand(command) {
+  switch (command) {
+    case 'refresh':
+      handleRefresh()
+      break
+    case 'closeCurrent':
+      break
+    default:
+      break
+  }
+}
 // 刷新
 function handleRefresh() {
   console.log(route)
@@ -46,6 +82,7 @@ function handleRefresh() {
   tagsViewStore.clearCurrentKeepView()
   router.replace({ path: '/redirect' + route.path, query: { type: 'back', url: route.path } })
 }
+// 关闭当前标签页
 </script>
 
 <style lang="less" scoped>
