@@ -1,6 +1,11 @@
-# vue3-element-plus-zyl-cms
+# 介绍
 
-This template should help get you started developing with Vue 3 in Vite.
+这是一个使用 vue3 js vite的后台模板，帮助你快速搭建后台项目。
+已完成的功能
+
+正在开发
+
+规划加入的功能
 
 ## Recommended IDE Setup
 
