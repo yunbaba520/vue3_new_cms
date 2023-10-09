@@ -6,7 +6,8 @@ import router from './router'
 import '@/assets/css/index.less'
 const app = createApp(App)
 app.use(registerIcons)
-app.use(pinia)
 app.use(router)
+
+app.use(pinia)
 
 app.mount('#app')

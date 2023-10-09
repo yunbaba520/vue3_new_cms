@@ -1,48 +1,58 @@
 import { createRouter, createWebHashHistory } from 'vue-router'
+import { menuMapRoutes } from './mapMenu'
+import useTagsView from '@/stores/tagsView/index'
+const mainView = () => import('../views/main/index.vue')
 
 const router = createRouter({
   history: createWebHashHistory(),
+  // name必须，且与文件名保持一致
   routes: [
     {
       path: '/',
-      redirect: '/main'
+      redirect: '/menu-1'
     },
-    {
-      path: '/main',
-      name: 'main',
-      component: () => import('../views/main/index.vue'),
-      children: [
-        {
-          path: '/',
-          redirect: '/main/welcome'
-        },
-        {
-          path: 'welcome',
-          name: 'welcome',
-          component: () => import('../views/main/welcome/welcome.vue')
-        },
-        {
-          path: 'test01',
-          name: 'test01',
-          component: () => import('../views/main/testPage01/testPage01.vue')
-        },
-        {
-          path: 'test02',
-          name: 'test02',
-          component: () => import('../views/main/testPage02/testPage02.vue')
-        }
-      ]
-    },
+
     {
       path: '/login',
       name: 'login',
       component: () => import('../views/login/index.vue')
+    },
+
+    {
+      path: '/redirect',
+      component: mainView,
+      name: 'redirect',
+      children: [
+        {
+          path: '/redirect/:path(.*)',
+          name: 'redirect',
+          component: () => import('../views/redirect/index.vue')
+        }
+      ]
     },
     {
       path: '/:pathMatch(.*)',
       component: () => import('../views/error/404.vue')
     }
   ]
+})
+for (const menu of menuMapRoutes) {
+  router.addRoute(menu)
+}
+
+// 路由导航
+router.beforeEach((to) => {
+  // 缓存
+  if (to.meta.keepName) {
+    console.log(to, 'mmm')
+    const obj = {
+      name: to.meta.title,
+      keepName: to.meta.keepName,
+      url: to.path
+    }
+    const tagsViewStore = useTagsView()
+    tagsViewStore.addKeepView(obj)
+  }
 })
 
 export default router

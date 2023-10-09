@@ -1,23 +1,20 @@
 <template>
   <div class="layout">
     <el-container class="container-wrap">
-      <el-header height="85px">
-        <div class="page-header">
-          <div class="top-info">
-            <div class="info-left">
-              <Logo></Logo>
-              <BtnFold></BtnFold>
-            </div>
-            <div class="info-right">
-              <!-- 全屏 -->
-              <BtnFullScreen></BtnFullScreen>
-              <!-- app设置 -->
-              <BtnSet></BtnSet>
-              <!-- user -->
-              <BtnUser></BtnUser>
-            </div>
+      <el-header height="50px">
+        <div class="top-info">
+          <div class="info-left">
+            <Logo></Logo>
+            <BtnFold></BtnFold>
           </div>
-          <HeaderTags></HeaderTags>
+          <div class="info-right">
+            <!-- 全屏 -->
+            <BtnFullScreen></BtnFullScreen>
+            <!-- app设置 -->
+            <BtnSet></BtnSet>
+            <!-- user -->
+            <BtnUser></BtnUser>
+          </div>
         </div>
       </el-header>
 
@@ -27,6 +24,7 @@
         </el-aside>
         <el-container>
           <el-main>
+            <HeaderTags></HeaderTags>
             <RouterViewWrap></RouterViewWrap>
           </el-main>
           <el-footer>Footer</el-footer>
@@ -64,28 +62,29 @@ const appConfigStore = useAppConfig()
     .el-header {
       padding: 0;
     }
-    .page-header {
+    .top-info {
       box-sizing: border-box;
-      height: 85px;
-      .top-info {
-        height: 50px;
-        padding: 0 10px;
-        background-color: #fff;
+      height: 50px;
+      padding: 0 10px;
+      background-color: #fff;
+      display: flex;
+      justify-content: space-between;
+      .info-left {
+        height: 100%;
         display: flex;
-        justify-content: space-between;
-        .info-left {
-          height: 100%;
-          display: flex;
-          align-items: center;
-          .el-icon {
-            cursor: pointer;
-          }
-        }
-        .info-right {
-          display: flex;
-          align-items: center;
+        align-items: center;
+        .el-icon {
+          cursor: pointer;
         }
       }
+      .info-right {
+        display: flex;
+        align-items: center;
+      }
+    }
+
+    .el-main {
+      padding: 0;
     }
   }
 }

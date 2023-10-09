@@ -77,6 +77,9 @@ import HeaderTags from './components/headerTags.vue'
         }
       }
     }
+    .el-main {
+      padding: 0;
+    }
   }
 }
 </style>

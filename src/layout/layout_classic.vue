@@ -83,6 +83,9 @@ const appConfigStore = useAppConfig()
         }
       }
     }
+    .el-main {
+      padding: 0;
+    }
   }
 }
 </style>

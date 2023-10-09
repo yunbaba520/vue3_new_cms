@@ -18,7 +18,7 @@
       <el-icon><DArrowRight /></el-icon>
     </div>
     <div class="right-arrow btn">
-      <el-icon><RefreshRight /></el-icon>
+      <el-icon @click="handleRefresh"><RefreshRight /></el-icon>
     </div>
     <div class="right-arrow btn">
       <el-icon><Setting /></el-icon>
@@ -39,6 +39,13 @@ function handleJumpPage(tag) {
   router.push(tag.url)
 }
 const route = useRoute()
+// 刷新
+function handleRefresh() {
+  console.log(route)
+  //先清除缓存，再跳转回来
+  tagsViewStore.clearCurrentKeepView()
+  router.replace({ path: '/redirect' + route.path, query: { type: 'back', url: route.path } })
+}
 </script>
 
 <style lang="less" scoped>
@@ -63,6 +70,9 @@ const route = useRoute()
     justify-content: center;
     align-items: center;
     cursor: pointer;
+    &:hover {
+      color: #000;
+    }
   }
   .left-arrow {
     border-right: 1px solid pink;
