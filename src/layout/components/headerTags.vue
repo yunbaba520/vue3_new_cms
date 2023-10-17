@@ -29,7 +29,9 @@
             <el-dropdown-item command="refresh"
               ><el-icon><RefreshRight /></el-icon>重新加载</el-dropdown-item
             >
-            <el-dropdown-item command="closeCurrent" disabled
+            <el-dropdown-item
+              command="closeCurrent"
+              :disabled="tagsViewStore.keepAliveViews.length <= 1"
               ><el-icon><Close /></el-icon>关闭当前标签页</el-dropdown-item
             >
             <el-dropdown-item divided disabled
@@ -70,6 +72,7 @@ function handleCommand(command) {
       handleRefresh()
       break
     case 'closeCurrent':
+      handleCloseCurrentTag()
       break
     default:
       break
@@ -83,6 +86,12 @@ function handleRefresh() {
   router.replace({ path: '/redirect' + route.path, query: { type: 'back', url: route.path } })
 }
 // 关闭当前标签页
+function handleCloseCurrentTag() {
+  // 根据route找到tag  删除
+  const currentPageKeepName = route.meta.keepName || ''
+  const currentTag = tagsViewStore.keepAliveViews.find((v) => v.keepName === currentPageKeepName)
+  handleCloseTag(currentTag)
+}
 </script>
 
 <style lang="less" scoped>
