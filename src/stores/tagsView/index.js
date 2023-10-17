@@ -55,9 +55,9 @@ const useTagsView = defineStore('tagsView', {
     },
     // 清除当前路由缓存
     clearCurrentKeepView() {
-      console.log(router.currentRoute.value.meta.keepName)
+      console.log(router.currentRoute.value.meta.keepName, '清除缓存keepname')
       const currentName = router.currentRoute.value.meta.keepName
-      const index = this.keepAliveViews.findIndex((v) => (v.keepName = currentName))
+      const index = this.keepAliveViews.findIndex((v) => v.keepName === currentName)
       if (index > -1) {
         this.keepAliveViews[index].keepName = ''
       }
