@@ -53,6 +53,18 @@ const useTagsView = defineStore('tagsView', {
         router.push(this.keepAliveViews[index - 1].url)
       }
     },
+    // 删除多个缓存
+    deleteKeepViewMul(index, type = 'left') {
+      console.log(index, type)
+      if (type === 'left') {
+        this.keepAliveViews.splice(0, index)
+      } else if (type === 'right') {
+        const currentLength = this.keepAliveViews.length
+        this.keepAliveViews.splice(index + 1, currentLength)
+      } else if (type === 'other') {
+        this.keepAliveViews = [this.keepAliveViews[index]]
+      }
+    },
     // 清除当前路由缓存
     clearCurrentKeepView() {
       console.log(router.currentRoute.value.meta.keepName, '清除缓存keepname')

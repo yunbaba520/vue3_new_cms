@@ -34,16 +34,24 @@
               :disabled="tagsViewStore.keepAliveViews.length <= 1"
               ><el-icon><Close /></el-icon>关闭当前标签页</el-dropdown-item
             >
-            <el-dropdown-item divided disabled
+            <el-dropdown-item divided command="closeLeft" :disabled="currentIndex < 1"
               ><el-icon><ArrowLeft /></el-icon>关闭左侧标签页</el-dropdown-item
             >
-            <el-dropdown-item disabled
+            <el-dropdown-item
+              command="closeRight"
+              :disabled="currentIndex >= tagsViewStore.keepAliveViews.length - 1"
               ><el-icon><ArrowRight /></el-icon>关闭右侧标签页</el-dropdown-item
             >
-            <el-dropdown-item divided disabled
+            <el-dropdown-item
+              divided
+              command="closeOther"
+              :disabled="tagsViewStore.keepAliveViews.length <= 1"
               ><el-icon><Position /></el-icon>关闭其他标签页</el-dropdown-item
             >
-            <el-dropdown-item disabled>
+            <el-dropdown-item
+              command="closeOther"
+              :disabled="tagsViewStore.keepAliveViews.length <= 1"
+            >
               <el-icon><Minus /></el-icon>关闭全部标签页</el-dropdown-item
             >
           </el-dropdown-menu>
@@ -54,6 +62,7 @@
 </template>
 
 <script setup>
+import { computed } from 'vue'
 import { useRoute } from 'vue-router'
 import router from '@/router/index'
 import useTagsView from '@/stores/tagsView/index'
@@ -74,23 +83,42 @@ function handleCommand(command) {
     case 'closeCurrent':
       handleCloseCurrentTag()
       break
+    case 'closeLeft':
+      handleCloseTagMul('left')
+      break
+    case 'closeRight':
+      handleCloseTagMul('right')
+      break
+    case 'closeOther':
+      handleCloseTagMul('other')
+      break
     default:
       break
   }
 }
+// 当前页面在缓存数组中下标
+const currentIndex = computed(() => {
+  const currentPageKeepName = route.meta.keepName || ''
+  const currentTagIndex = tagsViewStore.keepAliveViews.findIndex(
+    (v) => v.keepName === currentPageKeepName
+  )
+  return currentTagIndex
+})
 // 刷新
 function handleRefresh() {
-  console.log(route)
+  // console.log(route)
   //先清除缓存，再跳转回来
   tagsViewStore.clearCurrentKeepView()
   router.replace({ path: '/redirect' + route.path, query: { type: 'back', url: route.path } })
 }
 // 关闭当前标签页
 function handleCloseCurrentTag() {
-  // 根据route找到tag  删除
-  const currentPageKeepName = route.meta.keepName || ''
-  const currentTag = tagsViewStore.keepAliveViews.find((v) => v.keepName === currentPageKeepName)
+  const currentTag = tagsViewStore.keepAliveViews[currentIndex.value]
   handleCloseTag(currentTag)
+}
+// 关闭标签页
+function handleCloseTagMul(type = 'left') {
+  tagsViewStore.deleteKeepViewMul(currentIndex.value, type)
 }
 </script>
 
