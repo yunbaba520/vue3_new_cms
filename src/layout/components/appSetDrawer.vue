@@ -22,6 +22,14 @@
       ></div>
     </div>
     <el-divider>
+      <span>系统主题</span>
+    </el-divider>
+    <ColorRadioPicker
+      v-model="sysThemeCurrentColor"
+      :colors="sysThemeColors"
+      @changeValue="handleSysThemeColorChange"
+    ></ColorRadioPicker>
+    <el-divider>
       <span>界面显示</span>
     </el-divider>
     <div class="row">
@@ -33,6 +41,8 @@
 
 <script setup>
 import { ref } from 'vue'
+import { setCssVar } from '../../utils/setColor'
+import ColorRadioPicker from './colorRadioPicker.vue'
 import useAppConfig from '../../stores/appConfig/index'
 const appConfigStore = useAppConfig()
 // 抽屉
@@ -43,6 +53,22 @@ function openSetDrawer() {
 // 布局
 function setLayout(selectLayout) {
   appConfigStore.setLayout(selectLayout)
+}
+// 系统主题
+const sysThemeCurrentColor = ref(appConfigStore.sysThemeColor)
+const sysThemeColors = [
+  '#409eff',
+  '#009688',
+  '#536dfe',
+  '#ff5c93',
+  '#ee4f12',
+  '#0096c7',
+  '#9c27b0',
+  '#ff9800'
+]
+function handleSysThemeColorChange(v) {
+  setCssVar('--el-color-primary', v)
+  appConfigStore.setSysThemeColor(v)
 }
 // 灰色模式
 const greyMode = ref(appConfigStore.greyMode)

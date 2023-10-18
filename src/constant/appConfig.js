@@ -1,4 +1,5 @@
 // 布局
 const LAYOUT = 'appConfigLayout'
-
-export { LAYOUT }
+// 系统主题颜色
+const SYSTHEMECOLOR = 'appConfigSysThemeColor'
+export { LAYOUT, SYSTHEMECOLOR }
