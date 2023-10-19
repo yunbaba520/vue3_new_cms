@@ -11,6 +11,7 @@
             <div class="top-info">
               <div class="info-left">
                 <BtnFold></BtnFold>
+                <Breadcrumb></Breadcrumb>
               </div>
               <div class="info-right">
                 <!-- 全屏 -->
@@ -37,6 +38,7 @@
 import Logo from './components/logo.vue'
 import Menu from './components/menu.vue'
 import BtnFold from './components/btnFold.vue'
+import Breadcrumb from './components/breadcrumb.vue'
 import BtnUser from './components/btnUser.vue'
 import BtnSet from './components/btnSet.vue'
 import BtnFullScreen from './components/btnFullScreen.vue'

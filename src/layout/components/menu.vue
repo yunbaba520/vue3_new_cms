@@ -89,9 +89,7 @@ const defaultActive = ref(currentMenu.name + '')
   }
   .el-sub-menu.is-active {
     color: var(--left-menu-text-active-color);
-    .el-menu-item {
-      color: var(--left-menu-text-active-color);
-    }
+
     :deep(.el-sub-menu__title) {
       color: var(--left-menu-text-active-color);
     }
