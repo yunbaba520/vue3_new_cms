@@ -42,7 +42,6 @@ export const setMenuTextColorByMenuThemeColor = (color) => {
 }
 // 修改logo文字颜色
 export const setLogoTextColor = (color) => {
-  console.log('logo')
   const isDark = isDarkColor(color)
   const logoTextColor = isDark ? '#fff' : '#0000ee'
   setCssVar('--logo-text-color', logoTextColor)

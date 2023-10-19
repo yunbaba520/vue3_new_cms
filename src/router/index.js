@@ -44,7 +44,7 @@ for (const menu of menuMapRoutes) {
 router.beforeEach((to) => {
   // 缓存
   if (to.meta.keepName) {
-    console.log(to, 'mmm')
+    console.log(to, '缓存页面')
     const obj = {
       name: to.meta.title,
       keepName: to.meta.keepName,
