@@ -149,10 +149,10 @@ function handleCloseTagMul(type = 'left') {
     }
   }
   .left-arrow {
-    border-right: 1px solid pink;
+    border-right: 1px solid var(--el-color-primary);
   }
   .right-arrow {
-    border-left: 1px solid pink;
+    border-left: 1px solid var(--el-color-primary);
   }
   .tags {
     flex: 1;
@@ -166,7 +166,7 @@ function handleCloseTagMul(type = 'left') {
       color: #888;
       margin: 0 4px;
       cursor: pointer;
-      border: 1px solid pink;
+      border: 1px solid var(--el-color-primary);
       border-radius: 2px;
       display: flex;
       align-items: center;
@@ -174,7 +174,7 @@ function handleCloseTagMul(type = 'left') {
         visibility: hidden;
       }
       &:hover {
-        background-color: pink;
+        background-color: var(--el-color-primary);
         color: #fff;
         .close {
           visibility: visible;
@@ -182,7 +182,7 @@ function handleCloseTagMul(type = 'left') {
       }
     }
     .active {
-      background-color: pink;
+      background-color: var(--el-color-primary);
       color: #fff;
     }
   }

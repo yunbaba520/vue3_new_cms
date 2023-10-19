@@ -6,9 +6,6 @@
       :ellipsis="false"
       :default-active="defaultActive"
       unique-opened
-      text-color="#b7bdc3"
-      active-text-color="#fff"
-      background-color="#001529"
     >
       <template v-for="item in userMenu" :key="item.name">
         <el-sub-menu :index="item.name + ''">
@@ -68,18 +65,26 @@ const defaultActive = ref(currentMenu.name + '')
 .el-menu {
   border-right: none;
   user-select: none;
+  background-color: var(--left-menu-bg-color);
   .el-sub-menu {
+    :deep(.el-sub-menu__title) {
+      color: var(--left-menu-text-color);
+      &:hover {
+        background-color: var(--left-menu-bg-color);
+      }
+    }
     .el-menu-item {
       padding-left: 50px !important;
-      background-color: #0c2135;
-    }
-
-    .el-menu-item:hover {
-      color: #fff;
+      background-color: var(--left-menu-item-bg-color);
+      color: var(--left-menu-text-color);
+      &:hover {
+        color: var(--left-menu-text-active-color);
+      }
     }
 
     .el-menu-item.is-active {
-      background-color: #0a60bd;
+      background-color: var(--left-menu-item-active-bg-color);
+      color: var(--left-menu-text-active-color);
     }
   }
 }

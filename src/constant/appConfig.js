@@ -4,4 +4,6 @@ const LAYOUT = 'appConfigLayout'
 const SYSTHEMECOLOR = 'appConfigSysThemeColor'
 // 头部主题
 const TOPTHEMECOLOR = 'appConfigTopThemeColor'
-export { LAYOUT, SYSTHEMECOLOR, TOPTHEMECOLOR }
+// 菜单主题
+const MENUTHEMECOLOR = 'appConfigMenuThemeColor'
+export { LAYOUT, SYSTHEMECOLOR, TOPTHEMECOLOR, MENUTHEMECOLOR }

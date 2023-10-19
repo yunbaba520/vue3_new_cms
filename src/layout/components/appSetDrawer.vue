@@ -37,6 +37,17 @@
       :colors="topThemeColors"
       @changeValue="handleTopThemeColorChange"
     ></ColorRadioPicker>
+    <template v-if="appConfigStore.layout !== 'top'">
+      <el-divider>
+        <span>菜单主题</span>
+      </el-divider>
+      <ColorRadioPicker
+        v-model="menuThemeCurrentColor"
+        :colors="menuThemeColors"
+        @changeValue="handleMenuThemeColorChange"
+      ></ColorRadioPicker>
+    </template>
+
     <el-divider>
       <span>界面显示</span>
     </el-divider>
@@ -49,7 +60,11 @@
 
 <script setup>
 import { ref } from 'vue'
-import { setCssVar, setTopTextColorByTopThemeColor } from '@/utils/setColor'
+import {
+  setTopTextColorByTopThemeColor,
+  setMenuTextColorByMenuThemeColor,
+  setSysOtherColorBySysThemeColor
+} from '@/utils/setColor'
 import ColorRadioPicker from './colorRadioPicker.vue'
 import useAppConfig from '../../stores/appConfig/index'
 const appConfigStore = useAppConfig()
@@ -60,6 +75,14 @@ function openSetDrawer() {
 }
 // 布局
 function setLayout(selectLayout) {
+  if (appConfigStore.layout === selectLayout) return
+  if (selectLayout === 'top') {
+    handleTopThemeColorChange('#fff')
+    handleMenuThemeColorChange('#fff')
+  }
+  if (appConfigStore.layout === 'top') {
+    handleTopThemeColorChange('#fff')
+  }
   appConfigStore.setLayout(selectLayout)
 }
 // 系统主题
@@ -75,8 +98,9 @@ const sysThemeColors = [
   '#ff9800'
 ]
 function handleSysThemeColorChange(v) {
-  setCssVar('--el-color-primary', v)
   appConfigStore.setSysThemeColor(v)
+  // 其他用到主题色的也需要更新下
+  setSysOtherColorBySysThemeColor(v)
 }
 // 头部主题
 const topThemeCurrentColor = ref(appConfigStore.topThemeColor)
@@ -91,9 +115,28 @@ const topThemeColors = [
   '#383f45'
 ]
 function handleTopThemeColorChange(v) {
-  setCssVar('--top-header-bg-color', v)
   setTopTextColorByTopThemeColor(v)
   appConfigStore.setTopThemeColor(v)
+  if (appConfigStore.layout === 'top') {
+    console.log(111)
+    handleMenuThemeColorChange(v)
+  }
+}
+// 菜单主题
+const menuThemeCurrentColor = ref(appConfigStore.menuThemeColor)
+const menuThemeColors = [
+  '#fff',
+  '#001529',
+  '#212121',
+  '#273352',
+  '#191b24',
+  '#383f45',
+  '#001628',
+  '#344058'
+]
+function handleMenuThemeColorChange(v) {
+  setMenuTextColorByMenuThemeColor(v)
+  appConfigStore.setMenuThemeColor(v)
 }
 // 灰色模式
 const greyMode = ref(appConfigStore.greyMode)

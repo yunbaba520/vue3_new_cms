@@ -29,7 +29,7 @@ const isShowText = computed(() => {
   span {
     font-size: 16px;
     font-weight: 700;
-    color: white;
+    color: var(--logo-text-color);
     white-space: nowrap;
   }
 }

@@ -1,7 +1,11 @@
 import { defineStore } from 'pinia'
 import { localCache } from '@/utils/cache'
-import { LAYOUT, SYSTHEMECOLOR, TOPTHEMECOLOR } from '@/constant/appConfig'
-import { setCssVar, setTopTextColorByTopThemeColor } from '@/utils/setColor'
+import { LAYOUT, SYSTHEMECOLOR, TOPTHEMECOLOR, MENUTHEMECOLOR } from '@/constant/appConfig'
+import {
+  setTopTextColorByTopThemeColor,
+  setMenuTextColorByMenuThemeColor,
+  setSysOtherColorBySysThemeColor
+} from '@/utils/setColor'
 
 const useAppConfig = defineStore('appConfig', {
   state: () => ({
@@ -12,7 +16,9 @@ const useAppConfig = defineStore('appConfig', {
     // 系统主题颜色
     sysThemeColor: localCache.getCache(SYSTHEMECOLOR) || '#409eff',
     // 头部主题
-    topThemeColor: localCache.getCache(TOPTHEMECOLOR) || '#ffffff',
+    topThemeColor: localCache.getCache(TOPTHEMECOLOR) || '#fff',
+    // 菜单主题
+    menuThemeColor: localCache.getCache(MENUTHEMECOLOR) || '#fff',
     // 灰色模式
     greyMode: false
   }),
@@ -34,15 +40,21 @@ const useAppConfig = defineStore('appConfig', {
       this.topThemeColor = color
       localCache.setCache(TOPTHEMECOLOR, color)
     },
+    // 菜单主题
+    setMenuThemeColor(color) {
+      this.menuThemeColor = color
+      localCache.setCache(MENUTHEMECOLOR, color)
+    },
+    // 灰色模式
     setGreyMode(bool) {
       this.greyMode = bool
     },
     // 刷新
     handlerRefresh() {
       console.log('刷新函数')
-      setCssVar('--el-color-primary', this.sysThemeColor)
-      setCssVar('--top-header-bg-color', this.topThemeColor)
+      setSysOtherColorBySysThemeColor(this.sysThemeColor)
       setTopTextColorByTopThemeColor(this.topThemeColor)
+      setMenuTextColorByMenuThemeColor(this.menuThemeColor)
     }
   }
 })

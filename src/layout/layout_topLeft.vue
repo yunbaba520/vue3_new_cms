@@ -56,7 +56,7 @@ const appConfigStore = useAppConfig()
   .container-wrap {
     height: 100%;
     .el-aside {
-      background-color: #001529;
+      background-color: var(--left-menu-bg-color);
       transition: width 0.3s;
     }
     .el-header {

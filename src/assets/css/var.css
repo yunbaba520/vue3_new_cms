@@ -1,5 +1,14 @@
 :root {
+  /* logo 标题 */
+  --logo-text-color: #000;
+  /* 头部主题 */
   --top-header-bg-color: #fff;
   --top-header-bg-hover-color: #f6f6f6;
   --top-header-text-color: #000;
+  /* 菜单主题 */
+  --left-menu-bg-color: #fff;
+  --left-menu-item-bg-color: #fff;
+  --left-menu-item-active-bg-color: #fff;
+  --left-menu-text-color: #b7bdc3;
+  --left-menu-text-active-color: #fff;
 }
