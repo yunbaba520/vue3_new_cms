@@ -27,8 +27,8 @@
 </template>
 
 <script setup>
-import { ref, computed } from 'vue'
-import { useRoute } from 'vue-router'
+import { ref, computed, watch } from 'vue'
+import { useRoute, useRouter } from 'vue-router'
 import router from '@/router/index'
 import { createMenusByRoutes } from '../../utils/mapMenus'
 
@@ -49,6 +49,11 @@ function handlerMenuJump(subItem) {
 }
 // 刷新-菜单默认值
 const route = useRoute()
+const { currentRoute } = useRouter()
+watch(currentRoute, () => {
+  const currentMenu = mapDefaultMenu()
+  defaultActive.value = currentMenu.name + ''
+})
 function mapDefaultMenu() {
   for (const menu of userMenu) {
     for (const submenu of menu.children) {
