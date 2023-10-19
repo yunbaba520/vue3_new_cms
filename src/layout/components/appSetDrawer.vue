@@ -30,6 +30,14 @@
       @changeValue="handleSysThemeColorChange"
     ></ColorRadioPicker>
     <el-divider>
+      <span>头部主题</span>
+    </el-divider>
+    <ColorRadioPicker
+      v-model="topThemeCurrentColor"
+      :colors="topThemeColors"
+      @changeValue="handleTopThemeColorChange"
+    ></ColorRadioPicker>
+    <el-divider>
       <span>界面显示</span>
     </el-divider>
     <div class="row">
@@ -41,7 +49,7 @@
 
 <script setup>
 import { ref } from 'vue'
-import { setCssVar } from '../../utils/setColor'
+import { setCssVar, setTopTextColorByTopThemeColor } from '@/utils/setColor'
 import ColorRadioPicker from './colorRadioPicker.vue'
 import useAppConfig from '../../stores/appConfig/index'
 const appConfigStore = useAppConfig()
@@ -69,6 +77,23 @@ const sysThemeColors = [
 function handleSysThemeColorChange(v) {
   setCssVar('--el-color-primary', v)
   appConfigStore.setSysThemeColor(v)
+}
+// 头部主题
+const topThemeCurrentColor = ref(appConfigStore.topThemeColor)
+const topThemeColors = [
+  '#ffffff',
+  '#151515',
+  '#5172dc',
+  '#e74c3c',
+  '#24292e',
+  '#394664',
+  '#009688',
+  '#383f45'
+]
+function handleTopThemeColorChange(v) {
+  setCssVar('--top-header-bg-color', v)
+  setTopTextColorByTopThemeColor(v)
+  appConfigStore.setTopThemeColor(v)
 }
 // 灰色模式
 const greyMode = ref(appConfigStore.greyMode)

@@ -46,7 +46,7 @@ function handleClickColor(c) {
     display: flex;
     justify-content: center;
     align-items: center;
-    border: none;
+    border: 2px solid var(--el-color-primary);
     color: #fff;
   }
 }

@@ -17,8 +17,12 @@
 
 <style lang="less" scoped>
 .user {
+  color: var(--top-header-text-color);
   display: flex;
   align-items: center;
   cursor: pointer;
+  span {
+    margin: 0 4px;
+  }
 }
 </style>

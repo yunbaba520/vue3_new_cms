@@ -60,7 +60,9 @@ import HeaderTags from './components/headerTags.vue'
       .top-info {
         height: 50px;
         padding: 0 10px;
-        background-color: #fff;
+        color: var(--top-header-text-color);
+
+        background-color: var(--top-header-bg-color);
         display: flex;
         justify-content: space-between;
         .info-left {

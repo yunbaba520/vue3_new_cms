@@ -24,7 +24,7 @@ function openSet() {
   justify-content: center;
   align-items: center;
   &:hover {
-    background-color: #eee;
+    background-color: var(--top-header-bg-hover-color);
   }
 }
 </style>
