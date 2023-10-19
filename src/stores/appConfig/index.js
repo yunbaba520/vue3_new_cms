@@ -4,7 +4,8 @@ import { LAYOUT, SYSTHEMECOLOR, TOPTHEMECOLOR, MENUTHEMECOLOR } from '@/constant
 import {
   setTopTextColorByTopThemeColor,
   setMenuTextColorByMenuThemeColor,
-  setSysOtherColorBySysThemeColor
+  setSysOtherColorBySysThemeColor,
+  setLogoTextColorByLayoutChange
 } from '@/utils/setColor'
 
 const useAppConfig = defineStore('appConfig', {
@@ -55,6 +56,7 @@ const useAppConfig = defineStore('appConfig', {
       setSysOtherColorBySysThemeColor(this.sysThemeColor)
       setTopTextColorByTopThemeColor(this.topThemeColor)
       setMenuTextColorByMenuThemeColor(this.menuThemeColor)
+      setLogoTextColorByLayoutChange(this.layout)
     }
   }
 })

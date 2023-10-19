@@ -87,6 +87,15 @@ const defaultActive = ref(currentMenu.name + '')
       color: var(--left-menu-text-active-color);
     }
   }
+  .el-sub-menu.is-active {
+    color: var(--left-menu-text-active-color);
+    .el-menu-item {
+      color: var(--left-menu-text-active-color);
+    }
+    :deep(.el-sub-menu__title) {
+      color: var(--left-menu-text-active-color);
+    }
+  }
 }
 .el-menu--horizontal {
   box-sizing: border-box;

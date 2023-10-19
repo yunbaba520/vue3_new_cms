@@ -1,6 +1,7 @@
 import { isDarkColor, lighten, hexToRGB } from '@/utils/color'
 import { useCssVar } from '@vueuse/core'
 import { unref } from 'vue'
+
 // 在根元素设置css变量
 export const setCssVar = (prop, val, dom = document.documentElement) => {
   dom.style.setProperty(prop, val)
@@ -33,9 +34,26 @@ export const setMenuTextColorByMenuThemeColor = (color) => {
   const itemBgColor = isDark ? lighten(color, 6) : 'fff'
   const itemActiveBgColor = isDark ? 'var(--el-color-primary)' : hexToRGB(unref(primaryColor), 0.1)
   const textColor = isDark ? '#b7bdc3' : '#333'
-  const textActiveColor = isDark ? '#fff' : '#000'
+  const textActiveColor = isDark ? '#fff' : 'var(--el-color-primary)'
   setCssVar('--left-menu-text-color', textColor)
   setCssVar('--left-menu-text-active-color', textActiveColor)
   setCssVar('--left-menu-item-bg-color', itemBgColor)
   setCssVar('--left-menu-item-active-bg-color', itemActiveBgColor)
+}
+// 修改logo文字颜色
+export const setLogoTextColor = (color) => {
+  console.log('logo')
+  const isDark = isDarkColor(color)
+  const logoTextColor = isDark ? '#fff' : '#0000ee'
+  setCssVar('--logo-text-color', logoTextColor)
+}
+// 布局变化下，修改logo文字颜色
+export const setLogoTextColorByLayoutChange = (layout) => {
+  let bgColor = ''
+  if (layout === 'classic') {
+    bgColor = useCssVar('--left-menu-bg-color', document.documentElement)
+  } else {
+    bgColor = useCssVar('--top-header-bg-color', document.documentElement)
+  }
+  setLogoTextColor(unref(bgColor))
 }

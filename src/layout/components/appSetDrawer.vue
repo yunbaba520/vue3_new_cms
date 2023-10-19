@@ -63,10 +63,12 @@ import { ref } from 'vue'
 import {
   setTopTextColorByTopThemeColor,
   setMenuTextColorByMenuThemeColor,
-  setSysOtherColorBySysThemeColor
+  setSysOtherColorBySysThemeColor,
+  setLogoTextColor,
+  setLogoTextColorByLayoutChange
 } from '@/utils/setColor'
 import ColorRadioPicker from './colorRadioPicker.vue'
-import useAppConfig from '../../stores/appConfig/index'
+import useAppConfig from '@/stores/appConfig/index'
 const appConfigStore = useAppConfig()
 // 抽屉
 const drawer = ref(false)
@@ -76,13 +78,16 @@ function openSetDrawer() {
 // 布局
 function setLayout(selectLayout) {
   if (appConfigStore.layout === selectLayout) return
+  // 去top
   if (selectLayout === 'top') {
     handleTopThemeColorChange('#fff')
     handleMenuThemeColorChange('#fff')
   }
+  // 离开top
   if (appConfigStore.layout === 'top') {
     handleTopThemeColorChange('#fff')
   }
+  setLogoTextColorByLayoutChange(selectLayout)
   appConfigStore.setLayout(selectLayout)
 }
 // 系统主题
@@ -117,9 +122,13 @@ const topThemeColors = [
 function handleTopThemeColorChange(v) {
   setTopTextColorByTopThemeColor(v)
   appConfigStore.setTopThemeColor(v)
+  // top布局下 根据头部主题色修改菜单主题色
   if (appConfigStore.layout === 'top') {
-    console.log(111)
     handleMenuThemeColorChange(v)
+  }
+  // 非classic布局下，logoText颜色受top主题影响
+  if (appConfigStore.layout !== 'classic') {
+    setLogoTextColor(v)
   }
 }
 // 菜单主题
@@ -137,6 +146,10 @@ const menuThemeColors = [
 function handleMenuThemeColorChange(v) {
   setMenuTextColorByMenuThemeColor(v)
   appConfigStore.setMenuThemeColor(v)
+  // classic布局下，logoText颜色受menu主题影响
+  if (appConfigStore.layout === 'classic') {
+    setLogoTextColor(v)
+  }
 }
 // 灰色模式
 const greyMode = ref(appConfigStore.greyMode)
