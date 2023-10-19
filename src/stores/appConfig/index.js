@@ -20,6 +20,10 @@ const useAppConfig = defineStore('appConfig', {
     topThemeColor: localCache.getCache(TOPTHEMECOLOR) || '#fff',
     // 菜单主题
     menuThemeColor: localCache.getCache(MENUTHEMECOLOR) || '#fff',
+    // 面包屑
+    breadcrumb: true,
+    // 面包屑icon
+    breadcrumbIcon: true,
     // 灰色模式
     greyMode: false
   }),
@@ -45,6 +49,14 @@ const useAppConfig = defineStore('appConfig', {
     setMenuThemeColor(color) {
       this.menuThemeColor = color
       localCache.setCache(MENUTHEMECOLOR, color)
+    },
+    // 面包屑
+    setBreadcrumb(bool) {
+      this.breadcrumb = bool
+    },
+    // 面包屑icon
+    setBreadcrumbIcon(bool) {
+      this.breadcrumbIcon = bool
     },
     // 灰色模式
     setGreyMode(bool) {

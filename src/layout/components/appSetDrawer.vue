@@ -52,6 +52,14 @@
       <span>界面显示</span>
     </el-divider>
     <div class="row">
+      <span>面包屑</span>
+      <el-switch v-model="breadcrumb" @change="breadcrumbChange" />
+    </div>
+    <div class="row">
+      <span>面包屑图标</span>
+      <el-switch v-model="breadcrumbIcon" @change="breadcrumbIconChange" />
+    </div>
+    <div class="row">
       <span>灰色模式</span>
       <el-switch v-model="greyMode" @change="greyModeChange" />
     </div>
@@ -150,6 +158,16 @@ function handleMenuThemeColorChange(v) {
   if (appConfigStore.layout === 'classic') {
     setLogoTextColor(v)
   }
+}
+// 面包屑
+const breadcrumb = ref(appConfigStore.breadcrumb)
+function breadcrumbChange(val) {
+  appConfigStore.setBreadcrumb(val)
+}
+// 面包屑图标
+const breadcrumbIcon = ref(appConfigStore.breadcrumbIcon)
+function breadcrumbIconChange(val) {
+  appConfigStore.setBreadcrumbIcon(val)
 }
 // 灰色模式
 const greyMode = ref(appConfigStore.greyMode)
