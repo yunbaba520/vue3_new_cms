@@ -14,6 +14,9 @@
 
 ##### 正在开发
 
+- 主题色光暗模式切换（element plus 方案）
+- 颜色自定义
+
 ##### 规划加入的功能
 
 ## Recommended IDE Setup
