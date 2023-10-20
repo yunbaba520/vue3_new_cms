@@ -2,6 +2,21 @@ const mainView = () => import('../views/main/index.vue')
 
 export const menuMapRoutes = [
   {
+    path: '/about',
+    name: 'about',
+    redirect: '/about/document',
+    component: mainView,
+    meta: { title: '介绍', icon: 'ElementPlus' },
+    children: [
+      {
+        path: 'document',
+        name: 'document',
+        component: () => import('../views/main/about/about.vue'),
+        meta: { title: '技术栈', keepName: 'welcome' }
+      }
+    ]
+  },
+  {
     path: '/menu-1',
     name: 'menu-1',
     redirect: '/menu-1/menu-1-1',
