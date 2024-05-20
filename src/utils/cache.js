@@ -3,7 +3,7 @@ class Cache {
     this.storage = type === 'local' ? localStorage : sessionStorage
   }
   setCache(key, value) {
-    if (value) {
+    if (value || typeof value == 'boolean') {
       this.storage.setItem(key, JSON.stringify(value))
     }
   }

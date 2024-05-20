@@ -3,7 +3,8 @@
     <el-divider>
       <span>主题</span>
     </el-divider>
-    <el-switch />
+
+    <el-switch v-model="darkTheme" @change="darkModeChange" />
     <el-divider>
       <span>布局</span>
     </el-divider>
@@ -68,6 +69,10 @@
 
 <script setup>
 import { ref } from 'vue'
+import { useDark, useToggle } from '@vueuse/core'
+
+// import dayIcon from '@/assets/svg/day.svg?component'
+// import darkIcon from '@/assets/svg/dark.svg?component'
 import {
   setTopTextColorByTopThemeColor,
   setMenuTextColorByMenuThemeColor,
@@ -82,6 +87,26 @@ const appConfigStore = useAppConfig()
 const drawer = ref(false)
 function openSetDrawer() {
   drawer.value = true
+}
+// 暗主题
+const isDark = useDark()
+const toggleDark = useToggle(isDark)
+const darkTheme = ref(appConfigStore.darkMode)
+function darkModeChange(v) {
+  toggleDark()
+  appConfigStore.setDarkMode(v)
+  // 直接修改头部主题，菜单主题
+  if (v) {
+    handleTopThemeColorChange('#151515')
+    handleMenuThemeColorChange('#001529')
+    topThemeCurrentColor.value = '#151515'
+    menuThemeCurrentColor.value = '#001529'
+  } else {
+    handleTopThemeColorChange('#fff')
+    handleMenuThemeColorChange('#fff')
+    topThemeCurrentColor.value = '#fff'
+    menuThemeCurrentColor.value = '#fff'
+  }
 }
 // 布局
 function setLayout(selectLayout) {
@@ -118,7 +143,7 @@ function handleSysThemeColorChange(v) {
 // 头部主题
 const topThemeCurrentColor = ref(appConfigStore.topThemeColor)
 const topThemeColors = [
-  '#ffffff',
+  '#fff',
   '#151515',
   '#5172dc',
   '#e74c3c',

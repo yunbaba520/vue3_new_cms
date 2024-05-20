@@ -1,6 +1,12 @@
 import { defineStore } from 'pinia'
 import { localCache } from '@/utils/cache'
-import { LAYOUT, SYSTHEMECOLOR, TOPTHEMECOLOR, MENUTHEMECOLOR } from '@/constant/appConfig'
+import {
+  DARKMODE,
+  LAYOUT,
+  SYSTHEMECOLOR,
+  TOPTHEMECOLOR,
+  MENUTHEMECOLOR
+} from '@/constant/appConfig'
 import {
   setTopTextColorByTopThemeColor,
   setMenuTextColorByMenuThemeColor,
@@ -12,6 +18,8 @@ const useAppConfig = defineStore('appConfig', {
   state: () => ({
     // 侧边栏是否折叠
     sideIsFold: false,
+    // 主题
+    darkMode: localCache.getCache(DARKMODE) || false,
     // 布局
     layout: localCache.getCache(LAYOUT) || 'classic',
     // 系统主题颜色
@@ -31,6 +39,13 @@ const useAppConfig = defineStore('appConfig', {
     setSideFold(bool) {
       this.sideIsFold = bool
     },
+    // 光暗主题
+    setDarkMode(bool) {
+      this.darkMode = bool
+      localCache.setCache(DARKMODE, bool)
+      // console.log(localCache.getCache(DARKMODE))
+    },
+    // 布局
     setLayout(value) {
       this.layout = value
       localCache.setCache(LAYOUT, value)

@@ -127,10 +127,9 @@ function handleCloseTagMul(type = 'left') {
   box-sizing: border-box;
 
   height: 35px;
-  background-color: #fff;
 
-  border-top: 1px solid #ddd;
-  border-bottom: 1px solid #ddd;
+  border-top: 1px solid var(--el-color-primary);
+  border-bottom: 1px solid var(--el-color-primary);
   display: flex;
   align-items: center;
   list-style-type: none;
@@ -139,13 +138,12 @@ function handleCloseTagMul(type = 'left') {
   .btn {
     width: 35px;
     height: 100%;
-    color: #666;
     display: flex;
     justify-content: center;
     align-items: center;
     cursor: pointer;
     &:hover {
-      color: #000;
+      color: var(--el-color-primary);
     }
   }
   .left-arrow {
@@ -163,7 +161,8 @@ function handleCloseTagMul(type = 'left') {
       height: 30px;
       line-height: 30px;
       padding: 0 4px;
-      color: #888;
+      // color: #888;
+      font-size: 14px;
       margin: 0 4px;
       cursor: pointer;
       border: 1px solid var(--el-color-primary);

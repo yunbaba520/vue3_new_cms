@@ -12,6 +12,6 @@
   height: 100%;
   box-sizing: border-box;
   padding: 20px;
-  background-color: #fff;
+  // background-color: #000;
 }
 </style>

@@ -54,7 +54,6 @@ const appConfigStore = useAppConfig()
 .layout {
   width: 100vw;
   height: 100vh;
-  background-color: #eee;
   .container-wrap {
     height: 100%;
     .el-aside {
