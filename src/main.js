@@ -7,6 +7,11 @@ import '@/assets/css/index.less'
 import useAppConfig from '@/stores/appConfig/index'
 
 const app = createApp(App)
+
+// 全局注册拖拽指令
+import dragPosition from './directive/dragPosition/dragPosition.js'
+app.directive('dragPosition', dragPosition)
+
 app.use(registerIcons)
 app.use(router)
 
