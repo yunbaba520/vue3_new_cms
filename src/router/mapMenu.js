@@ -51,5 +51,20 @@ export const menuMapRoutes = [
         meta: { keepName: 'testPage02', title: '测试页2' }
       }
     ]
+  },
+  {
+    path: '/menu-3',
+    name: 'menu-3',
+    redirect: '/menu-3/menu-3-1',
+    component: mainView,
+    meta: { title: '自定义指令', icon: 'ElementPlus' },
+    children: [
+      {
+        path: 'menu-3-1',
+        name: 'menu-3-1',
+        component: () => import('../views/main/testPage03/testPage03.vue'),
+        meta: { keepName: 'testPage03', title: '自定义指令' }
+      }
+    ]
   }
 ]

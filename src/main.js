@@ -11,6 +11,12 @@ const app = createApp(App)
 // 全局注册拖拽指令
 import dragPosition from './directive/dragPosition/dragPosition.js'
 app.directive('dragPosition', dragPosition)
+import permission from './directive/permission/permission.js'
+app.directive('permission', permission)
+import debounce from './directive/debounce/debounce.js'
+app.directive('debounce', debounce)
+import throttle from './directive/throttle/throttle.js'
+app.directive('throttle', throttle)
 
 app.use(registerIcons)
 app.use(router)
