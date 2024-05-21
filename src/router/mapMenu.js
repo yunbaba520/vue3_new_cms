@@ -66,5 +66,32 @@ export const menuMapRoutes = [
         meta: { keepName: 'testPage03', title: '自定义指令' }
       }
     ]
+  },
+  {
+    path: '/menu-4',
+    name: 'menu-4',
+    redirect: '/menu-4/menu-4-1',
+    component: mainView,
+    meta: { title: '错误页面', icon: 'ElementPlus' },
+    children: [
+      {
+        path: 'menu-4-1',
+        name: 'menu-4-1',
+        component: () => import('../views/error/404.vue'),
+        meta: { keepName: '404', title: '404' }
+      },
+      {
+        path: 'menu-4-2',
+        name: 'menu-4-2',
+        component: () => import('../views/error/403.vue'),
+        meta: { keepName: '403', title: '403' }
+      },
+      {
+        path: 'menu-4-3',
+        name: 'menu-4-3',
+        component: () => import('../views/error/500.vue'),
+        meta: { keepName: '500', title: '500' }
+      }
+    ]
   }
 ]

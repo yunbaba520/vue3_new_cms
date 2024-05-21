@@ -1,5 +1,5 @@
 <template>
-  <ErrorCpn type="404" @errorClick="handlerError"></ErrorCpn>
+  <ErrorCpn type="403" @errorClick="handlerError"></ErrorCpn>
 </template>
 
 <script setup>
