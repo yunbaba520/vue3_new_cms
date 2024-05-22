@@ -27,6 +27,7 @@
 <script setup>
 function debounceFn() {
   console.log('我是防抖函数，我被触发了')
+  console.log(this)
 }
 function throttleFn() {
   console.log('我是节流函数，我被触发了')
