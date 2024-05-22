@@ -1,16 +1,49 @@
 <template>
-  <div>测试页1</div>
-  <el-input v-model="input" placeholder="Please input" />
-  <el-button type="primary" @click="toggleDark()">改变主题色{{ isDark }}</el-button>
+  <page-search
+    ref="userSearchRef"
+    :searchConfig="searchConfig"
+    @queryClick="handleQuery"
+  ></page-search>
 </template>
 
 <script setup>
 import { ref } from 'vue'
-const input = ref('')
+import PageSearch from '../../../components/mySearch/index.vue'
 
-import { useDark, useToggle } from '@vueuse/core'
-const isDark = useDark()
-const toggleDark = useToggle(isDark)
+const userSearchRef = ref(null)
+
+const searchConfig = {
+  pageName: 'park',
+  formItems: [
+    {
+      label: '手机号',
+      prop: 'cellPhone',
+      type: 'input',
+      placeholder: '请输入手机号'
+    },
+    {
+      label: '所属门店',
+      prop: 'storeId',
+      type: 'select',
+      placeholder: '请选择',
+      options: [
+        {
+          label: '选项1',
+          value: 1
+        }
+      ]
+    },
+    {
+      label: '时间',
+      prop: 'time',
+      type: 'date-picker',
+      placeholder: '请选择时间'
+    }
+  ]
+}
+function handleQuery(val) {
+  console.log('搜索', val)
+}
 </script>
 
-<style lang="scss" scoped></style>
+<style lang="less" scoped></style>

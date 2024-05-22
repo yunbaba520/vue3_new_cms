@@ -36,13 +36,13 @@ export const menuMapRoutes = [
     name: 'menu-2',
     redirect: '/menu-2/menu-2-1',
     component: mainView,
-    meta: { title: '主菜单2', icon: 'ElementPlus' },
+    meta: { title: '表格页面', icon: 'ElementPlus' },
     children: [
       {
         path: 'menu-2-1',
         name: 'menu-2-1',
         component: () => import('../views/main/testPage01/testPage01.vue'),
-        meta: { keepName: 'testPage01', title: '测试页1' }
+        meta: { keepName: 'testPage01', title: '搜索与表格组件' }
       },
       {
         path: 'menu-2-2',
