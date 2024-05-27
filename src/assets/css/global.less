@@ -1,0 +1,142 @@
+//折叠样式
+@collapseFlagWidth: 27px;
+@collapseFlagHeight: 50px;
+
+.collapse_show_left,
+.collapse_show_right {
+  transition: width 0.28s;
+  .collapse_box {
+    overflow: hidden;
+  }
+}
+
+.collapse_hide_left,
+.collapse_hide_right {
+  transition: width 0.28s;
+  width: 0 !important;
+
+  .collapse_box {
+    overflow: hidden;
+  }
+}
+
+.collapse_show_top,
+.collapse_show_bottom {
+  transition: height 0.28s;
+  .collapse_box {
+    overflow: hidden;
+  }
+}
+
+.collapse_hide_top,
+.collapse_hide_bottom {
+  transition: height 0.28s;
+  height: 0 !important;
+
+  .collapse_box {
+    overflow: hidden;
+  }
+}
+
+.collapse_box {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+.collapse_show_left {
+  .collapse_flag {
+    img {
+      transform: rotate(180deg);
+    }
+  }
+}
+
+.collapse_hide_left {
+  padding: 0 !important;
+}
+
+.collapse_hide_right {
+  padding: 0 !important;
+  .collapse_flag {
+    img {
+      transform: rotate(180deg);
+    }
+  }
+}
+
+.collapse_show_top {
+  .collapse_flag {
+    img {
+      transform: rotate(-90deg);
+    }
+  }
+}
+
+.collapse_hide_top {
+  padding: 0 !important;
+
+  .collapse_flag {
+    img {
+      transform: rotate(90deg);
+    }
+  }
+}
+
+.collapse_show_bottom {
+  .collapse_flag {
+    img {
+      transform: rotate(90deg);
+    }
+  }
+}
+
+.collapse_hide_bottom {
+  padding: 0 !important;
+
+  .collapse_flag {
+    img {
+      transform: rotate(-90deg);
+    }
+  }
+}
+
+.collapse_flag {
+  pointer-events: auto;
+  position: absolute;
+  cursor: pointer;
+  background-size: cover !important;
+}
+
+.collapse_flag_top {
+  width: @collapseFlagHeight;
+  height: @collapseFlagWidth;
+  left: 50%;
+  transform: translateX(-50%);
+  bottom: -@collapseFlagHeight;
+}
+
+.collapse_flag_bottom {
+  width: @collapseFlagHeight;
+  height: @collapseFlagWidth;
+  left: 50%;
+  transform: translateX(-50%);
+  top: -@collapseFlagHeight;
+}
+
+.collapse_flag_left {
+  width: @collapseFlagWidth;
+  height: @collapseFlagHeight;
+  top: 50%;
+  transform: translateY(-50%);
+  right: -@collapseFlagWidth;
+}
+
+.collapse_flag_right {
+  width: @collapseFlagWidth;
+  height: @collapseFlagHeight;
+  top: 50%;
+  transform: translateY(-50%);
+  left: -@collapseFlagWidth;
+}
